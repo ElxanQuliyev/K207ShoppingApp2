@@ -69,6 +69,9 @@ namespace K207Shopping.Web.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(300)
@@ -110,6 +113,33 @@ namespace K207Shopping.Web.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductPictures");
+                });
+
+            modelBuilder.Entity("K207Shopping.Web.Models.Slider", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Header")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubHeader")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Sliders");
                 });
 
             modelBuilder.Entity("K207Shopping.Web.Models.Product", b =>

@@ -18,6 +18,7 @@
   <ItemGroup>
     <Folder Include="Areas\K207Admin\Data\" />
     <Folder Include="Areas\K207Admin\Models\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

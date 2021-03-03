@@ -20,7 +20,8 @@
             @Html.DisplayNameFor(model => model.PictureUrl)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PictureUrl)
+            <img src="~/uploads/@Html.DisplayFor(model => model.PictureUrl)" width="150" alt="Alternate Text" />
+            
         </dd>
     </dl>
 </div>

@@ -1,5 +1,8 @@
-﻿using K207Shopping.Web.Models;
+﻿using K207Shopping.Web.Data;
+using K207Shopping.Web.Models;
+using K207Shopping.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,21 +16,29 @@ namespace K207Shopping.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ShoppingContext _context;
+        public HomeController(ILogger<HomeController> logger, ShoppingContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomeVM vm = new HomeVM()
+            {
+                Categories = _context.Categories.ToList(),
+                Sliders=_context.Sliders.ToList(),
+                Products=_context.Products.Include("ProductPictures.Picture").ToList()
+            };
+            return View(vm);
         }
 
         public IActionResult Privacy()
         {
             return View();
         }
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

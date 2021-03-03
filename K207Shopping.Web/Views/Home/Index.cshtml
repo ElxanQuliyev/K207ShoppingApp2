@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@model HomeVM 
 
 <!-- Hero/Intro Slider Start -->
 <div class="section ">
@@ -9,41 +9,28 @@
         <!-- Hero slider Active -->
         <div class="swiper-wrapper">
             <!-- Single slider item -->
-            <div class="hero-slide-item slider-height-2 swiper-slide d-flex">
-                <div class="hero-bg-image">
-                    <img src="assets/images/slider-image/slider-2-1.jpg" alt="">
-                </div>
-                <div class="container align-self-center">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 offset-2 align-self-center m-auto">
-                            <div class="hero-slide-content hero-slide-content-2 slider-animated-1 text-center">
-                                <span class="category">New Products</span>
-                                <h2 class="title-1">Flexible Sofa Set</h2>
-                                <p class="w-100">Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore et dolore magna</p>
-                                <a href="#" class="btn btn-lg btn-primary btn-hover-dark mt-5">Shop Now</a>
+            @foreach (var slider in Model.Sliders)
+            {
+                <div class="hero-slide-item slider-height-2 swiper-slide d-flex">
+                    <div class="hero-bg-image">
+                        <img src="~/uploads/@slider.PhotoUrl" alt="">
+                    </div>
+                    <div class="container align-self-center">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 offset-2 align-self-center m-auto">
+                                <div class="hero-slide-content hero-slide-content-2 slider-animated-1 text-center">
+                                    <span class="category">@slider.SubHeader</span>
+                                    <h2 class="title-1">@slider.Header</h2>
+                                    <p class="w-100">@slider.Description</p>
+                                    <a href="#" class="btn btn-lg btn-primary btn-hover-dark mt-5">Shop Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Single slider item -->
-            <div class="hero-slide-item slider-height-2 swiper-slide d-flex text-center">
-                <div class="hero-bg-image">
-                    <img src="assets/images/slider-image/slider-2-2.jpg" alt="">
-                </div>
-                <div class="container align-self-center">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8 offset-2 align-self-center m-auto">
-                            <div class="hero-slide-content hero-slide-content-2 slider-animated-1">
-                                <span class="category">New Products</span>
-                                <h2 class="title-1">Flexible Sofa Set</h2>
-                                <p class="w-100">Torem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmo tempor incididunt ut labore et dolore magna</p>
-                                <a href="#" class="btn btn-lg btn-primary btn-hover-dark mt-5">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            }
+
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination swiper-pagination-white"></div>
@@ -61,51 +48,24 @@
     <div class="container">
         <!-- Banners Start -->
         <div class="row">
-            <!-- Banner Start -->
-            <div class="col-lg-4 col-12 mb-md-30px mb-lm-30px" data-aos="fade-up" data-aos-delay="200">
-                <div class="banner-2">
-                    <img src="assets/images/banner/5.jpg" alt="" />
-                    <div class="info justify-content-start">
-                        <div class="content align-self-center">
-                            <h3 class="title">
-                                New Office Chair <br /> Collection
-                            </h3>
-                            <a href="shop-left-sidebar.html" class="shop-link">Shop Now</a>
+            @foreach (var cat in Model.Categories)
+            {
+                <!-- Banner Start -->
+                <div class="col-lg-4 col-12 mb-md-30px mb-lm-30px" data-aos="fade-up" data-aos-delay="200">
+                    <div class="banner-2">
+                        <img src="~/uploads/@cat.PictureUrl" alt="" />
+                        <div class="info justify-content-start">
+                            <div class="content align-self-center">
+                                <h3 class="title" style="width:70%">
+                                    @(cat.Name.Length>50 ? cat.Name.Substring(0, 50):cat.Name)
+                                </h3>
+                                <a href="shop-left-sidebar.html" class="shop-link">Shop Now</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Banner End -->
-            <!-- Banner Start -->
-            <div class="col-lg-4 col-12 mb-md-30px mb-lm-30px" data-aos="fade-up" data-aos-delay="400">
-                <div class="banner-2">
-                    <img src="assets/images/banner/6.jpg" alt="" />
-                    <div class="info justify-content-start">
-                        <div class="content align-self-center">
-                            <h3 class="title">
-                                Living Room <br /> Collection
-                            </h3>
-                            <a href="shop-left-sidebar.html" class="shop-link">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Banner End -->
-            <!-- Banner Start -->
-            <div class="col-lg-4 col-12" data-aos="fade-up" data-aos-delay="600">
-                <div class="banner-2">
-                    <img src="assets/images/banner/7.jpg" alt="" />
-                    <div class="info justify-content-start">
-                        <div class="content align-self-center">
-                            <h3 class="title">
-                                Children Room <br /> Collection
-                            </h3>
-                            <a href="shop-left-sidebar.html" class="shop-link">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Banner End -->
+                <!-- Banner End -->
+            }
         </div>
         <!-- Banners End -->
     </div>
@@ -154,293 +114,47 @@
                     <!-- 1st tab start -->
                     <div class="tab-pane fade show active" id="tab-product-new-arrivals">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6" data-aos="fade-up" data-aos-delay="200">
+                            @foreach (var pro in Model.Products)
+                            {
                                 <!-- Single Prodect -->
-                                <div class="product">
-                                    <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
-                                            <img src="assets/images/product-image/1.jpg" alt="Product" />
-                                            <img class="hover-image" src="assets/images/product-image/2.jpg" alt="Product" />
-                                        </a>
-                                        <span class="badges">
-                                            <span class="new">New</span>
-                                        </span>
-                                        <div class="actions">
-                                            <a href="wishlist.html" class="action wishlist" title="Wishlist">
-                                                <i class="icon-heart"></i>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="product">
+                                        <div class="thumb">
+                                            <a href="/Products/Detail/@pro.ID" class="image">
+                                                <img src="@pro.ProductPictures[0].Picture.Url" alt="Product" />
+                                                <img class="hover-image" src="@pro.ProductPictures[1].Picture.Url" alt="Product" />
                                             </a>
-                                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="icon-size-fullscreen"></i>
-                                            </a>
-                                            <a href="compare.html" class="action compare" title="Compare">
-                                                <i class="icon-refresh"></i>
-                                            </a>
+                                            @if (pro.isNew)
+                                            {
+                                                <span class="badges">
+                                                    <span class="new">New</span>
+                                                </span>
+                                            }
+                                            <div class="actions">
+                                                <a href="wishlist.html" class="action wishlist" title="Wishlist">
+                                                    <i class="icon-heart"></i>
+                                                </a>
+                                                <a href="#" class="action quickview" data-samir="@pro.ID" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <i class="icon-size-fullscreen"></i>
+                                                </a>
+                                                <a href="compare.html" class="action compare" title="Compare">
+                                                    <i class="icon-refresh"></i>
+                                                </a>
+                                            </div>
+                                            <button title="Add To Cart" class=" add-to-cart">
+                                                Add
+                                                To Cart
+                                            </button>
                                         </div>
-                                        <button title="Add To Cart" class=" add-to-cart">
-                                            Add
-                                            To Cart
-                                        </button>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="shop-left-sidebar.html">Simple minimal Chair </a></h5>
-                                        <span class="price">
-                                            <span class="new">$38.50</span>
-                                        </span>
+                                        <div class="content">
+                                            <h5 class="title"><a href="/Products/Detail/@pro.ID">@pro.Name </a></h5>
+                                            <span class="price">
+                                                <span class="new">@pro.Price</span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6" data-aos="fade-up" data-aos-delay="400">
-                                <!-- Single Prodect -->
-                                <div class="product">
-                                    <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
-                                            <img src="assets/images/product-image/3.jpg" alt="Product" />
-                                            <img class="hover-image" src="assets/images/product-image/4.jpg" alt="Product" />
-                                        </a>
-                                        <span class="badges">
-                                            <span class="sale">-10%</span>
-                                            <span class="new">New</span>
-                                        </span>
-                                        <div class="actions">
-                                            <a href="wishlist.html" class="action wishlist" title="Wishlist">
-                                                <i class="icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="icon-size-fullscreen"></i>
-                                            </a>
-                                            <a href="compare.html" class="action compare" title="Compare">
-                                                <i class="icon-refresh"></i>
-                                            </a>
-                                        </div>
-                                        <button title="Add To Cart" class=" add-to-cart">
-                                            Add
-                                            To Cart
-                                        </button>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="shop-left-sidebar.html">Wooden decorations</a></h5>
-                                        <span class="price">
-                                            <span class="new">$38.50</span>
-                                            <span class="old">$48.50</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- Single Prodect -->
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6" data-aos="fade-up" data-aos-delay="600">
-                                <!-- Single Prodect -->
-                                <div class="product">
-                                    <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
-                                            <img src="assets/images/product-image/5.jpg" alt="Product" />
-                                            <img class="hover-image" src="assets/images/product-image/6.jpg" alt="Product" />
-                                        </a>
-                                        <span class="badges">
-                                            <span class="sale">-7%</span>
-                                        </span>
-                                        <div class="actions">
-                                            <a href="wishlist.html" class="action wishlist" title="Wishlist">
-                                                <i class="icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="icon-size-fullscreen"></i>
-                                            </a>
-                                            <a href="compare.html" class="action compare" title="Compare">
-                                                <i class="icon-refresh"></i>
-                                            </a>
-                                        </div>
-                                        <button title="Add To Cart" class=" add-to-cart">
-                                            Add
-                                            To Cart
-                                        </button>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="shop-left-sidebar.html">High quality vase bottle</a></h5>
-                                        <span class="price">
-                                            <span class="new">$30.50</span>
-                                            <span class="old">$38.00</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6" data-aos="fade-up" data-aos-delay="800">
-                                <!-- Single Prodect -->
-                                <div class="product">
-                                    <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
-                                            <img src="assets/images/product-image/7.jpg" alt="Product" />
-                                            <img class="hover-image" src="assets/images/product-image/8.jpg" alt="Product" />
-                                        </a>
-                                        <span class="badges">
-                                            <span class="new">New</span>
-                                        </span>
-                                        <div class="actions">
-                                            <a href="wishlist.html" class="action wishlist" title="Wishlist">
-                                                <i class="icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="icon-size-fullscreen"></i>
-                                            </a>
-                                            <a href="compare.html" class="action compare" title="Compare">
-                                                <i class="icon-refresh"></i>
-                                            </a>
-                                        </div>
-                                        <button title="Add To Cart" class=" add-to-cart">
-                                            Add
-                                            To Cart
-                                        </button>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="shop-left-sidebar.html">Living & Bedroom Chair</a></h5>
-                                        <span class="price">
-                                            <span class="new">$38.50</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- Single Prodect -->
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-md-30px mb-lm-30px" data-aos="fade-up" data-aos-delay="200">
-                                <!-- Single Prodect -->
-                                <div class="product">
-                                    <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
-                                            <img src="assets/images/product-image/9.jpg" alt="Product" />
-                                            <img class="hover-image" src="assets/images/product-image/10.jpg" alt="Product" />
-                                        </a>
-                                        <span class="badges">
-                                            <span class="sale">-5%</span>
-                                            <span class="new">New</span>
-                                        </span>
-                                        <div class="actions">
-                                            <a href="wishlist.html" class="action wishlist" title="Wishlist">
-                                                <i class="icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="icon-size-fullscreen"></i>
-                                            </a>
-                                            <a href="compare.html" class="action compare" title="Compare">
-                                                <i class="icon-refresh"></i>
-                                            </a>
-                                        </div>
-                                        <button title="Add To Cart" class=" add-to-cart">
-                                            Add
-                                            To Cart
-                                        </button>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="shop-left-sidebar.html">Living & Bedroom Table</a></h5>
-                                        <span class="price">
-                                            <span class="new">$38.50</span>
-                                            <span class="old">$40.50</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6  mb-md-30px mb-lm-30px" data-aos="fade-up" data-aos-delay="400">
-                                <!-- Single Prodect -->
-                                <div class="product">
-                                    <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
-                                            <img src="assets/images/product-image/11.jpg" alt="Product" />
-                                            <img class="hover-image" src="assets/images/product-image/12.jpg" alt="Product" />
-                                        </a>
-                                        <span class="badges">
-                                        </span>
-                                        <div class="actions">
-                                            <a href="wishlist.html" class="action wishlist" title="Wishlist">
-                                                <i class="icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="icon-size-fullscreen"></i>
-                                            </a>
-                                            <a href="compare.html" class="action compare" title="Compare">
-                                                <i class="icon-refresh"></i>
-                                            </a>
-                                        </div>
-                                        <button title="Add To Cart" class=" add-to-cart">
-                                            Add
-                                            To Cart
-                                        </button>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="shop-left-sidebar.html">Wooden decorations</a></h5>
-                                        <span class="price">
-                                            <span class="new">$38.50</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- Single Prodect -->
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-es-30px" data-aos="fade-up" data-aos-delay="600">
-                                <!-- Single Prodect -->
-                                <div class="product">
-                                    <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
-                                            <img src="assets/images/product-image/13.jpg" alt="Product" />
-                                            <img class="hover-image" src="assets/images/product-image/14.jpg" alt="Product" />
-                                        </a>
-                                        <span class="badges">
-                                        </span>
-                                        <div class="actions">
-                                            <a href="wishlist.html" class="action wishlist" title="Wishlist">
-                                                <i class="icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="icon-size-fullscreen"></i>
-                                            </a>
-                                            <a href="compare.html" class="action compare" title="Compare">
-                                                <i class="icon-refresh"></i>
-                                            </a>
-                                        </div>
-                                        <button title="Add To Cart" class=" add-to-cart">
-                                            Add
-                                            To Cart
-                                        </button>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="shop-left-sidebar.html">High quality vase bottle</a></h5>
-                                        <span class="price">
-                                            <span class="new">$30.50</span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 " data-aos="fade-up" data-aos-delay="800">
-                                <!-- Single Prodect -->
-                                <div class="product">
-                                    <div class="thumb">
-                                        <a href="shop-left-sidebar.html" class="image">
-                                            <img src="assets/images/product-image/15.jpg" alt="Product" />
-                                            <img class="hover-image" src="assets/images/product-image/16.jpg" alt="Product" />
-                                        </a>
-                                        <span class="badges">
-                                            <span class="new">New</span>
-                                        </span>
-                                        <div class="actions">
-                                            <a href="wishlist.html" class="action wishlist" title="Wishlist">
-                                                <i class="icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="icon-size-fullscreen"></i>
-                                            </a>
-                                            <a href="compare.html" class="action compare" title="Compare">
-                                                <i class="icon-refresh"></i>
-                                            </a>
-                                        </div>
-                                        <button title="Add To Cart" class=" add-to-cart">
-                                            Add
-                                            To Cart
-                                        </button>
-                                    </div>
-                                    <div class="content">
-                                        <h5 class="title"><a href="shop-left-sidebar.html">Living & Bedroom Chair</a></h5>
-                                        <span class="price">
-                                            <span class="new">$38.50</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- Single Prodect -->
-                            </div>
+                            }
                         </div>
                     </div>
                     <!-- 1st tab end -->
@@ -1672,130 +1386,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-5 col-sm-12 col-xs-12 mb-lm-30px mb-sm-30px">
-                        <!-- Swiper -->
-                        <div class="swiper-container gallery-top mb-4">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/1.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/2.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/3.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/4.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/5.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-container gallery-thumbs slider-nav-style-1 small-nav">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/1.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/2.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/3.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/4.jpg" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="assets/images/product-image/5.jpg" alt="">
-                                </div>
-                            </div>
-                            <!-- Add Arrows -->
-                            <div class="swiper-buttons">
-                                <div class="swiper-button-next"></div>
-                                <div class="swiper-button-prev"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7 col-sm-12 col-xs-12">
-                        <div class="product-details-content quickview-content">
-                            <h2>Originals Kaval Windbr</h2>
-                            <p class="reference">Reference:<span> demo_17</span></p>
-                            <div class="pro-details-rating-wrap">
-                                <div class="rating-product">
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                    <i class="ion-android-star"></i>
-                                </div>
-                                <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
-                            </div>
-                            <div class="pricing-meta">
-                                <ul>
-                                    <li class="old-price not-cut">$18.90</li>
-                                </ul>
-                            </div>
-                            <p class="quickview-para">Lorem ipsum dolor sit amet, consectetur adipisic elit eiusm tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim venialo quis nostrud exercitation ullamco</p>
-                            <div class="pro-details-size-color">
-                                <div class="pro-details-color-wrap">
-                                    <span>Color</span>
-                                    <div class="pro-details-color-content">
-                                        <ul>
-                                            <li class="blue"></li>
-                                            <li class="maroon active"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pro-details-quality">
-                                <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
-                                </div>
-                                <div class="pro-details-cart btn-hover">
-                                    <button class="add-cart btn btn-primary btn-hover-primary ml-4">
-                                        Add To
-                                        Cart
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="pro-details-wish-com">
-                                <div class="pro-details-wishlist">
-                                    <a href="wishlist.html">
-                                        <i class="ion-android-favorite-outline"></i>Add to
-                                        wishlist
-                                    </a>
-                                </div>
-                                <div class="pro-details-compare">
-                                    <a href="compare.html"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
-                                </div>
-                            </div>
-                            <div class="pro-details-social-info">
-                                <span>Share</span>
-                                <div class="social-info">
-                                    <ul>
-                                        <li>
-                                            <a href="#"><i class="ion-social-facebook"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="ion-social-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="ion-social-google"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="ion-social-instagram"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Modal end -->
+@section scripts{
+    <script>
+        $(".quickview").click(function () {
+            var productId = $(this).attr("data-samir");
+            $.ajax({
+                url: "/Products/FindProductByID",
+                data: { productId },
+                method: "Post",
+                success: function (res) {
+                    $("#exampleModal .modal-body").html(res)
+                    console.log(res)
+                }
+            })
+        })
+    </script>
+
+
+ }

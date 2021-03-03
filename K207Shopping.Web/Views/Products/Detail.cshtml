@@ -1,0 +1,328 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ProductDetailVM
+<div class="offcanvas-overlay"></div>
+<!-- breadcrumb-area start -->
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row breadcrumb_box  align-items-center">
+                    <div class="col-lg-6 col-md-6 col-sm-12 text-center text-md-left">
+                        <h2 class="breadcrumb-title">Shop</h2>
+                    </div>
+                    <div class="col-lg-6  col-md-6 col-sm-12">
+                        <!-- breadcrumb-list start -->
+                        <ul class="breadcrumb-list text-center text-md-right">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="shop-left-sidebar.html">Shop</a></li>
+                            <li class="breadcrumb-item active">Product Details</li>
+                        </ul>
+                        <!-- breadcrumb-list end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- breadcrumb-area end -->
+<!-- Product Details Area Start -->
+<div class="product-details-area pt-100px pb-100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
+                <!-- Swiper -->
+                <div class="swiper-container zoom-top">
+                    <div class="swiper-wrapper">
+                        @foreach (var picture in Model.Product.ProductPictures)
+                        {
+                            <div class="swiper-slide zoom-image-hover">
+                                <img class="img-responsive m-auto" src="~/@picture.Picture.Url" alt="">
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+                <div class="swiper-container zoom-thumbs slider-nav-style-1 small-nav mt-3 mb-3">
+                    <div class="swiper-wrapper">
+                        @foreach (var pic in Model.Product.ProductPictures)
+                        {
+                            <div class="swiper-slide">
+                                <img class="img-responsive m-auto" src="~/@pic.Picture.Url" alt="">
+                            </div>
+
+                        }
+
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-buttons">
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-details-content quickview-content">
+                    <h2>@Model.Product.Name</h2>
+                    <p class="reference">Reference:<span> demo_17</span></p>
+                    <div class="pro-details-rating-wrap">
+                        <div class="rating-product">
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                            <i class="ion-android-star"></i>
+                        </div>
+                        <span class="read-review"><a class="reviews" href="#">Read reviews (1)</a></span>
+                    </div>
+                    <div class="pricing-meta">
+                        <ul>
+                            <li class="old-price not-cut">@Model.Product.Price Azn</li>
+                        </ul>
+                    </div>
+                    <p class="quickview-para">@(Model.Product.Description.Length>100?Model.Product.Description.Substring(0,130):Model.Product.Description)...</p>
+                    <div class="pro-details-quality">
+                        <div class="cart-plus-minus">
+                            <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                        </div>
+                        <div class="pro-details-cart">
+                            <button class="add-cart btn btn-primary btn-hover-primary ml-4" href="#">
+                                Add To
+                                Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="pro-details-wish-com">
+                        <div class="pro-details-wishlist">
+                            <a href="wishlist.html">
+                                <i class="ion-android-favorite-outline"></i>Add to
+                                wishlist
+                            </a>
+                        </div>
+                        <div class="pro-details-compare">
+                            <a href="compare.html"><i class="ion-ios-shuffle-strong"></i>Add to compare</a>
+                        </div>
+                    </div>
+                    <div class="pro-details-social-info">
+                        <span>Share</span>
+                        <div class="social-info">
+                            <ul class="d-flex">
+                                <li>
+                                    <a href="#"><i class="ion-social-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-google"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pro-details-policy">
+                        <ul>
+                            <li>
+                                <img src="assets/images/icons/policy.png" alt="" /><span>
+                                    Security Policy (Edit With
+                                    Customer Reassurance Module)
+                                </span>
+                            </li>
+                            <li>
+                                <img src="assets/images/icons/policy-2.png" alt="" /><span>
+                                    Delivery Policy (Edit
+                                    With Customer Reassurance Module)
+                                </span>
+                            </li>
+                            <li>
+                                <img src="assets/images/icons/policy-3.png" alt="" /><span>
+                                    Return Policy (Edit With
+                                    Customer Reassurance Module)
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- product details description area start -->
+<div class="description-review-area pb-100px" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+        <div class="description-review-wrapper">
+            <div id="disqus_thread"></div>
+            <script>
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function () { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://k207-shopping.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <script id="dsq-count-scr" src="//k207-shopping.disqus.com/count.js" async></script>
+        </div>
+    </div>
+</div>
+<!-- product details description area end -->
+<!-- New Product Start -->
+<div class="section pb-100px" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+        <!-- section title start -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-left mb-11">
+                    <h2 class="title">You Might Also Like</h2>
+                </div>
+            </div>
+        </div>
+        <!-- section title start -->
+        <div class="new-product-slider swiper-container slider-nav-style-1" data-aos="fade-up" data-aos-delay="200">
+            <div class="new-product-wrapper swiper-wrapper">
+                @foreach (var feat in Model.FeaturedProducts)
+                {
+                    <!-- Single Prodect -->
+                    <div class="new-product-item swiper-slide">
+                        <div class="product">
+                            <div class="thumb">
+                                <a href="/Products/detail/@feat.ID" class="image">
+                                    <img src="~/@feat.ProductPictures[0].Picture.Url" alt="Product" />
+                                    <img class="hover-image" src="~/@feat.ProductPictures[1].Picture.Url" alt="Product" />
+                                </a>
+                                @if (feat.isNew)
+                                {
+                                    <span class="badges">
+                                        <span class="sale">-10%</span>
+                                        <span class="new">New</span>
+                                    </span>
+                                }
+
+                                <div class="actions">
+                                    <a href="wishlist.html" class="action wishlist" title="Wishlist">
+                                        <i class="icon-heart"></i>
+                                    </a>
+                                    <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="icon-size-fullscreen"></i>
+                                    </a>
+                                    <a href="compare.html" class="action compare" title="Compare">
+                                        <i class="icon-refresh"></i>
+                                    </a>
+                                </div>
+                                <button title="Add To Cart" class=" add-to-cart">
+                                    Add
+                                    To Cart
+                                </button>
+                            </div>
+                            <div class="content">
+                                <h5 class="title"><a href="/Products/Detail/@feat.ID">@feat.Name </a></h5>
+                                <span class="price">
+                                    <span class="new">@feat.Discount</span>
+                                    <span class="old">@feat.Price</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-buttons">
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- New Product End -->
+<!-- New Product Start -->
+<div class="section pb-100px" data-aos="fade-up" data-aos-delay="200">
+    <div class="container">
+        <!-- section title start -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-left mb-11">
+                    <h2 class="title">12 Other Products In The Same Category:</h2>
+                </div>
+            </div>
+        </div>
+        <!-- section title start -->
+        <div class="new-product-slider swiper-container slider-nav-style-1" data-aos="fade-up" data-aos-delay="200">
+            <div class="new-product-wrapper swiper-wrapper">
+                @foreach (var feat in Model.SameCategoryPro)
+                {
+                    <!-- Single Prodect -->
+                    <div class="new-product-item swiper-slide">
+                        <div class="product">
+                            <div class="thumb">
+                                <a href="/Products/detail/@feat.ID" class="image">
+                                    <img src="~/@feat.ProductPictures[0].Picture.Url" alt="Product" />
+                                    <img class="hover-image" src="~/@feat.ProductPictures[1].Picture.Url" alt="Product" />
+                                </a>
+                                @if (feat.isNew)
+                                {
+                            <span class="badges">
+                                @if (feat.Discount > 0 && feat.Discount != null)
+                                {
+                                    int percentComplete = (int)(0.5f + ((100f * (float)feat.Discount) / (float)feat.Price));
+                                    <span class="sale">-@(percentComplete)%</span>
+                                }
+                                <span class="new">New</span>
+                            </span>
+                                }
+
+                                <div class="actions">
+                                    <a href="wishlist.html" class="action wishlist" title="Wishlist">
+                                        <i class="icon-heart"></i>
+                                    </a>
+                                    <a href="#" class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="icon-size-fullscreen"></i>
+                                    </a>
+                                    <a href="compare.html" class="action compare" title="Compare">
+                                        <i class="icon-refresh"></i>
+                                    </a>
+                                </div>
+                                <button title="Add To Cart" class=" add-to-cart">
+                                    Add
+                                    To Cart
+                                </button>
+                            </div>
+                            <div class="content">
+                                <h5 class="title"><a href="/Products/Detail/@feat.ID">@feat.Name </a></h5>
+                                <span class="price">
+                                    <span class="new">@feat.Discount</span>
+                                    <span class="old">@feat.Price</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-buttons">
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- New Product End -->

@@ -176,3 +176,10 @@ C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Ra
 C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Areas\K207Admin\Views\AdminCategories\Details.cshtml.g.cs
 C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Areas\K207Admin\Views\AdminCategories\Edit.cshtml.g.cs
 C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Areas\K207Admin\Views\AdminCategories\Index.cshtml.g.cs
+C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Areas\K207Admin\Views\AdminSliders\Create.cshtml.g.cs
+C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Areas\K207Admin\Views\AdminSliders\Delete.cshtml.g.cs
+C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Areas\K207Admin\Views\AdminSliders\Details.cshtml.g.cs
+C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Areas\K207Admin\Views\AdminSliders\Edit.cshtml.g.cs
+C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Areas\K207Admin\Views\AdminSliders\Index.cshtml.g.cs
+C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Views\Products\Detail.cshtml.g.cs
+C:\Users\Elxan\source\repos\K207ShoppingApp\K207Shopping.Web\obj\Debug\net5.0\Razor\Views\Shared\ProductQuickView.cshtml.g.cs
