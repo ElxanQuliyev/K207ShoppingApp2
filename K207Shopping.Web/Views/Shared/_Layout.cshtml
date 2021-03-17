@@ -43,7 +43,7 @@
 
     <!-- Main Style -->
     <!-- <link rel="stylesheet" href="~/assets/css/style.css" /> -->
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -133,9 +133,9 @@
                                 </ul>
                             </div>
                             <!-- Single Wedge End -->
-                            <a href="#offcanvas-cart" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+                            <a href="/checkout" class="header-action-btn header-action-btn-cart ">
                                 <i class="icon-handbag"></i>
-                                <span class="header-action-num">01</span>
+                                <span class="header-action-num">0</span>
                                 <!-- <span class="cart-amount">€30.00</span> -->
                             </a>
                             <a href="#offcanvas-mobile-menu" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
@@ -185,7 +185,7 @@
                                 </ul>
                             </div>
                             <!-- Single Wedge End -->
-                            <a href="#offcanvas-cart" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
+                            <a href="/orders/checkout" class="pr-0">
                                 <i class="icon-handbag"></i>
                                 <span class="header-action-num">01</span>
                                 <!-- <span class="cart-amount">€30.00</span> -->
@@ -339,32 +339,7 @@
                 <button class="offcanvas-close">×</button>
             </div>
             <div class="body customScroll">
-                <ul class="minicart-product-list">
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/1.jpg" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Walnut Cutting Board</a>
-                            <span class="quantity-price">1 x <span class="amount">$91.86</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/2.jpg" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Lucky Wooden Elephant</a>
-                            <span class="quantity-price">1 x <span class="amount">$453.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="assets/images/product-image/3.jpg" alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Fish Cut Out Set</a>
-                            <span class="quantity-price">1 x <span class="amount">$87.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                </ul>
+                @*@await Html.PartialAsync("BasketProduct")*@
             </div>
             <div class="foot">
                 <div class="sub-total">
@@ -704,7 +679,11 @@
     <script src="~/assets/js/plugins/plugins.min.js"></script>
     <!-- Main Js -->
     <script src="~/assets/js/main.js"></script>
-    @await RenderSectionAsync("scripts",required:false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="~/js/mycart.js"></script>
+
+    @await RenderSectionAsync("scripts", required: false)
 </body>
 
 </html>

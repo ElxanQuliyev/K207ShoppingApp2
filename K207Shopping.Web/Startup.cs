@@ -1,15 +1,12 @@
 using K207Shopping.Web.Data;
+using K207Shopping.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace K207Shopping.Web
 {
@@ -29,6 +26,18 @@ namespace K207Shopping.Web
             {
                 option.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
+
+            services.AddDefaultIdentity<K207User>(option=> {
+                option.SignIn.RequireConfirmedEmail = false;
+                option.SignIn.RequireConfirmedAccount = false;
+            }).AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ShoppingContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/login";
+                options.AccessDeniedPath = "/login";
+            });
+
             services.AddControllersWithViews();
         }
 
@@ -50,6 +59,7 @@ namespace K207Shopping.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
